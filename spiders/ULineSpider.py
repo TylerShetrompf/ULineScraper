@@ -16,14 +16,19 @@ logging.getLogger('scrapy').setLevel(logging.WARNING)
 from tkinter import *
 
 #Function definition for file browser
-def browseFiles(mode):
-    filename = filedialog.askopenfilename(initialdir = "/",
-                                          title= "Select a file")
+def browseFilesInput():
+    inputfilename = filedialog.askopenfilename(initialdir = "/",
+                                               title= "Select a file")
     # Change label contents
-    label_file_explorer.configure(text="File Opened: "+filename)
+    label_file_explorer_input.configure(text="File Opened: "+inputfilename)
+def browseFilesOutput():
+    outputfilename = filedialog.askopenfilename(initialdir = "/",
+                                               title= "Select a file")
+    # Change label contents
+    label_file_explorer_output.configure(text="File Opened: "+inputfilename)
 
-def scrape():
-
+#def scrape():
+    #put scrape code here
 
 #Create the root window
 window = Tk()
@@ -46,7 +51,7 @@ label_file_explorer_input = Label(window,
       
 button_input_explore = Button(window, 
                         text = "Choose Input",
-                        command = browseFiles("input")) 
+                        command = browseFilesInput) 
 
 # Create a File Explorer label for choosing output
 label_file_explorer_output = Label(window,
@@ -57,12 +62,17 @@ label_file_explorer_output = Label(window,
       
 button_output_explore = Button(window, 
                         text = "Choose Output",
-                        command = browseFiles("output")) 
+                        command = browseFilesOutput) 
+
+#Exit button
+button_exit = Button(window,
+                     text="Exit",
+                     command= exit)
   
 #Scrape button
-button_scrape = Button(window, 
-                     text = "Scrape",
-                     command = scrape) 
+#button_scrape = Button(window, 
+#                     text = "Scrape",
+#                     command = scrape) 
 
 # Grid method is chosen for placing
 # the widgets at respective positions 
