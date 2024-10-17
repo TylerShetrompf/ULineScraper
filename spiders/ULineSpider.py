@@ -15,18 +15,21 @@ logging.getLogger('scrapy').setLevel(logging.WARNING)
 #tkinter import for GUI
 from tkinter import *
 
-#Function definition for file browser
+#Function definition for input file browser
 def browseFilesInput():
     inputfilename = filedialog.askopenfilename(initialdir = "/",
                                                title= "Select a file")
     # Change label contents
     label_file_explorer_input.configure(text="File Opened: "+inputfilename)
+
+#Function definition for output file browser
 def browseFilesOutput():
     outputfilename = filedialog.askopenfilename(initialdir = "/",
                                                title= "Select a file")
     # Change label contents
-    label_file_explorer_output.configure(text="File Opened: "+inputfilename)
+    label_file_explorer_output.configure(text="File Opened: "+outputfilename)
 
+# Function definition for scrape button
 #def scrape():
     #put scrape code here
 
