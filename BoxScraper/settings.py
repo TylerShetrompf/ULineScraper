@@ -1,4 +1,4 @@
-# Scrapy settings for ULineSpider project
+# Scrapy settings for BoxScraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,20 +7,20 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "ULineSpider"
+BOT_NAME = "BoxScraper"
 
-SPIDER_MODULES = ["ULineSpider.spiders"]
-NEWSPIDER_MODULE = "ULineSpider.spiders"
+SPIDER_MODULES = ["BoxScraper.spiders"]
+NEWSPIDER_MODULE = "BoxScraper.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "ULineSpider (+http://www.yourdomain.com)"
+#USER_AGENT = "BoxScraper (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = false
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 6
+#CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -45,13 +45,13 @@ CONCURRENT_REQUESTS = 6
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "ULineSpider.middlewares.UlinespiderSpiderMiddleware": 543,
+#    "BoxScraper.middlewares.BoxscraperSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "ULineSpider.middlewares.UlinespiderDownloaderMiddleware": 543,
+#    "BoxScraper.middlewares.BoxscraperDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ CONCURRENT_REQUESTS = 6
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "ULineSpider.pipelines.UlinespiderPipeline": 300,
+#    "BoxScraper.pipelines.BoxscraperPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -9,12 +9,28 @@ from tkinter import filedialog
 #Scrapy Imports
 import scrapy 
 from scrapy.crawler import CrawlerProcess
+from scrapy.http import Request
 from scrapy.utils.project import get_project_settings
-from spiders import ULineSpider
-from spiders.ULineSpider import ulinespider
 
 #tkinter import for GUI
 from tkinter import *
+
+class ulinespider(scrapy.Spider):
+    global ulineaddress
+    global boxpartneraddress
+    name = "spideruline"
+
+    def __init__(self, output, start_urls):
+            self.output = output  # output file name
+            self.start_urls = start_urls
+    
+    def parse(self, response):
+        for model in response.xpath('//*[@id="tblChartBody"]/tbody/tr[*]/td[*]/*/*/text()'):
+            print(model)
+        for link in response.xpath('//*[@id="tblChartBody"]/tbody/tr[*]/td[*]/*/*/@href'):
+            print(link)
+        print(self.output)
+
 
 #Function definition for input file browser
 def browseFilesInput():
@@ -22,6 +38,7 @@ def browseFilesInput():
     #init variables for urls
     global ulineurl
     global boxpartnerurl
+    global start_url_list
     inputfilename = filedialog.askopenfilename(initialdir = "/",
                                                title= "Select a file")
     # Change label contents
@@ -33,8 +50,12 @@ def browseFilesInput():
             if step == 0:
                 ulineurl = row[1]
                 step += 1
+                start_url_list = ulineurl # + ',' + boxpartnerurl
+                print(start_url_list)
             if step == 1:
                 boxpartnerurl = row[1]
+                
+
 
 #Function definition for output file browser
 def browseFilesOutput():
@@ -46,14 +67,23 @@ def browseFilesOutput():
 
 # Function definition for scrape button
 def scrape():
-    spider = ulinespider
-    process = CrawlerProcess(get_project_settings())
-    #process.crawl(spider, output=outputfilename, uline=ulineurl, boxpartner=boxpartnerurl)
-    process.crawl(spider, output=outputfilename, start_urls=[ulineurl])
-    process.start
+    process = CrawlerProcess(
+        settings={
+            "BOT_NAME": "ULineSpider",
+            #"SPIDER_MODULES": "['ULineSpider.spiders']",
+            "NEWSPIDER_MODULE": "ULineSpider.spiders",
+            "ROBOTSTXT_OBEY": "false",
+            "CONCURRENT_REQUESTS": "6",
+            "REQUEST_FINGERPRINTER_IMPLEMENTATION": "2.7",
+            "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
+            "FEED_EXPORT_ENCODING": "utf-8",
+            #"start_urls" : start_url_list
+            })
+    process.crawl(ulinespider, output=outputfilename, start_urls=[
+        start_url_list
+    ])
+    process.start()
 
-
- 
 # Create the root window
 window = Tk()
 

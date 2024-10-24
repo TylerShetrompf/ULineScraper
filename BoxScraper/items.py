@@ -6,7 +6,7 @@
 import scrapy
 
 
-class UlinespiderItem(scrapy.Item):
+class BoxscraperItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass

@@ -1,8 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\spiders",
-    "\\ULineScraper-env"
+    "\\spiders"
   ],
   "SelectedNode": "\\spiders\\ULineSpider.py",
   "PreviewInSolutionExplorer": false
